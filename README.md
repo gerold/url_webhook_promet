@@ -1,4 +1,4 @@
 url_webhook_promet
 ==================
 
-post-commit hook
+For use in post-commit hooks.  Copied from https://gist.github.com/oodavid/1809044
