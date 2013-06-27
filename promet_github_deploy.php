@@ -5,6 +5,7 @@ $site_docroot = array(
   '/Users/arnoldfrench/Sites/prometsource.dev',
 );
 
+// Commands to be executed inside the directories.
 $commands = array(
   'git pull',
   'git status',
