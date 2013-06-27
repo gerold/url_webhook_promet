@@ -1,23 +1,32 @@
 <?php
 
-// Path to site, ex: devsite
-$Site_Docroot = "/var/www/sites/p2pi.prometdev.com";
-
-// The commands
-$commands = array(
-	'echo Site_Docroot',
-	'git pull',
-	'git status',
+// Absolute paths to directories.
+$site_docroot = array(
+  '/Users/arnoldfrench/Sites/prometsource.dev',
 );
 
-// Run the commands for output
+// Commands to be executed inside the directories.
+$commands = array(
+  'git pull',
+  'git status',
+);
+
+// ----------------------------------------------------------------------------
+// No editing beyond this point.
+
 $output = '';
-foreach($commands AS $command){
-	// Run it
-	$tmp = shell_exec($command);
-	// Output
-	$output .= "<span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
-	$output .= htmlentities(trim($tmp)) . "\n";
+foreach ($site_docroot as $dir) {
+  if (!chdir($dir)) {
+    continue;
+  }
+
+  foreach ($commands as $command) {
+    // Run it
+    $tmp = shell_exec($command);
+    // Output
+    $output .= "<span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
+    $output .= htmlentities(trim($tmp)) . "\n";
+  }
 }
 
 // Make it pretty for manual user access (and why not?)
